@@ -13,6 +13,7 @@ package lab3_2;
  import edu.iis.mto.staticmock.ConfigurationLoader;
 import edu.iis.mto.staticmock.IncomingInfo;
 import edu.iis.mto.staticmock.IncomingNews;
+import edu.iis.mto.staticmock.NewsLoader;
 import edu.iis.mto.staticmock.NewsReaderFactory;
 import edu.iis.mto.staticmock.PublishableNews;
 import edu.iis.mto.staticmock.SubsciptionType;
@@ -101,6 +102,14 @@ import org.mockito.internal.util.reflection.*;
 	 	 		List<String> testList = (List<String>) Whitebox.getInternalState(pn, "publicContent");
 	 	 		assertThat(testList.size(), is(not(equalTo(0))));
 	 	 		assertThat(testList.get(0), is(equalTo("pub")));
+	 	 	}
+ 		 	
+ 		 	@Test
+	 	 	public void testNewsReaderFactoryCorrectReaderUsedAndGetReaderCalledOnce() {
+	 	 		NewsLoader test = new NewsLoader();
+	 	 		test.loadNews();
+	 	 		PowerMockito.verifyStatic();
+	 	 		NewsReaderFactory.getReader("test");
 	 	 	}
  
  }
