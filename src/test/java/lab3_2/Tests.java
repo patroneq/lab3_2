@@ -11,9 +11,14 @@ package lab3_2;
  
  import edu.iis.mto.staticmock.Configuration;
  import edu.iis.mto.staticmock.ConfigurationLoader;
- 
- import static org.powermock.api.mockito.PowerMockito.*;
- import org.mockito.internal.util.reflection.*;
+import edu.iis.mto.staticmock.PublishableNews;
+import edu.iis.mto.staticmock.SubsciptionType;
+
+import static org.powermock.api.mockito.PowerMockito.*;
+
+import java.util.List;
+
+import org.mockito.internal.util.reflection.*;
  import static org.hamcrest.CoreMatchers.*;
   
  @RunWith(PowerMockRunner.class)
@@ -40,9 +45,27 @@ package lab3_2;
  		when(testConfigurationLoader.loadConfiguration()).thenReturn(testConfiguration);
  	}
  
- 	@Test
- 	public void test() {
- 		fail("Not yet implemented");
- 	}
+ 	public void testSubANewsAddedCorrectly() {
+ 		 		PublishableNews pn = PublishableNews.create();
+ 		 		pn.addForSubscription("subA", SubsciptionType.A);
+ 		 		List<String> testList = (List<String>) Whitebox.getInternalState(pn, "subscribentContent");
+ 		 		assertThat(testList.size(), is(not(equalTo(0))));
+ 		 	}
+ 		 	
+ 		 	@Test
+ 		 	public void testSubBNewsAddedCorrectly() {
+ 		 		PublishableNews pn = PublishableNews.create();
+ 		 		pn.addForSubscription("subA", SubsciptionType.B);
+ 		 		List<String> testList = (List<String>) Whitebox.getInternalState(pn, "subscribentContent");
+ 		 		assertThat(testList.size(), is(not(equalTo(0))));
+ 		 	}
+ 		 	
+ 		 	@Test
+ 		 	public void testSubCNewsAddedCorrectly() {
+ 		 		PublishableNews pn = PublishableNews.create();
+ 		 		pn.addForSubscription("subA", SubsciptionType.C);
+ 		 		List<String> testList = (List<String>) Whitebox.getInternalState(pn, "subscribentContent");
+ 		 		assertThat(testList.size(), is(not(equalTo(0))));
+ 		  	}
  
  }
