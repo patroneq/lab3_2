@@ -21,8 +21,6 @@ import edu.iis.mto.staticmock.reader.NewsReader;
 
 import static org.powermock.api.mockito.PowerMockito.*;
 
-import java.util.List;
-
 import org.mockito.internal.util.reflection.*;
  import static org.hamcrest.CoreMatchers.*;
   
