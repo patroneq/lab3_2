@@ -44,8 +44,8 @@ import org.mockito.internal.util.reflection.*;
  		Whitebox.setInternalState(testConfiguration, "readerType", "testNewsReader");
  		when(testConfigurationLoader.loadConfiguration()).thenReturn(testConfiguration);
  	}
- 
- 	public void testSubANewsAddedCorrectly() {
+	 		@Test
+	 		public void testSubANewsAddedCorrectly() {
  		 		PublishableNews pn = PublishableNews.create();
  		 		pn.addForSubscription("subA", SubsciptionType.A);
  		 		List<String> testList = (List<String>) Whitebox.getInternalState(pn, "subscribentContent");
@@ -55,7 +55,7 @@ import org.mockito.internal.util.reflection.*;
  		 	@Test
  		 	public void testSubBNewsAddedCorrectly() {
  		 		PublishableNews pn = PublishableNews.create();
- 		 		pn.addForSubscription("subA", SubsciptionType.B);
+ 		 		pn.addForSubscription("subB", SubsciptionType.B);
  		 		List<String> testList = (List<String>) Whitebox.getInternalState(pn, "subscribentContent");
  		 		assertThat(testList.size(), is(not(equalTo(0))));
  		 	}
@@ -63,9 +63,18 @@ import org.mockito.internal.util.reflection.*;
  		 	@Test
  		 	public void testSubCNewsAddedCorrectly() {
  		 		PublishableNews pn = PublishableNews.create();
- 		 		pn.addForSubscription("subA", SubsciptionType.C);
+ 		 		pn.addForSubscription("subC", SubsciptionType.C);
  		 		List<String> testList = (List<String>) Whitebox.getInternalState(pn, "subscribentContent");
  		 		assertThat(testList.size(), is(not(equalTo(0))));
  		  	}
+ 		 	
+ 		 	@Test
+	 	 	public void testPublicNewsAddedCorrectly() {
+	 	 		PublishableNews pn = PublishableNews.create();
+	 	 		pn.addPublicInfo("pub");
+	 	 		List<String> testList = (List<String>) Whitebox.getInternalState(pn, "publicContent");
+	 	 		assertThat(testList.size(), is(not(equalTo(0))));
+	 	 		assertThat(testList.get(0), is(equalTo("pub")));
+	 	 	}
  
  }
